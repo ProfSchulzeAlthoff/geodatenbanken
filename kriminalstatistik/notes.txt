@@ -1,0 +1,43 @@
+Übungsdatenbank: Polizeiliche Kriminalstatistik 2022
+
+- Ein Setup für einfache Abfragen mit SQL 
+
+https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2022/pks2022_node.html
+
+- Kriminalstatistik - Kreis (https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2022/PKSTabellen/KreisFalltabellen/kreisfalltabellen.html?nn=211724)
+
+Aufgaben:
+1. Normalisieren
+	- Welche NF ist verletzt
+	- Wie wird das gelöst
+2. Daten verstehen:
+	- Häufigkeitszahl recherchieren (Formel)
+
+---
+Kriminalstatistik fortführen!
+
+Aufgaben:
+1. Suchen Sie die Kriminalstatistik 2023 und führen Sie die Tabellen fort (Achtung Encoding auf UTF-8 setzen!).
+	- Achten Sie auf die unterschiedlichen Jahre (gibt es Änderungen in der Tabellenstruktur?)
+2. Werten Sie Unterschiede in der Statistik aus. Welche Straftaten haben in der Summe sehr stark zugenommen/abgenommen? Finden Sie Gründe.
+
+
+
+---
+create dummy table with all text
+
+perform select with casts
+
+select cast(schluessel as char(6)) as schluessel ,
+cast (straftat as varchar (50)) as straftat,
+cast (gemeindeschluessel as int) as gmd_schl,
+cast (stadt_landkreis as varchar(100)) as kreis_name, 
+cast (kreisart as varchar(3)) as kreisart,
+cast (replace(anzahl_erfasste_faelle,',','') as int) as anzahl_erfasste_faelle,
+cast (replace(haeufigkeitszahl,',','') as int) as haeufigkeitszahl,
+cast (replace(erfasste_faelle_versuche_anzahl,',','') as int) as erfasste_faelle_versuche_anzahl,
+cast (replace(mit_schusswaffe_gedroht,',','') as int) as mit_schusswaffe_gedroht,
+cast (replace(mit_schusswaffe_geschossen,',','') as int) as mit_schusswaffe_geschossen,
+cast (replace(auffklaerung_anzahl_faelle,',','') as int) as aufklaerung_anzahl_faelle,
+cast (replace(tatverdaechtige_insgesamt,',','') as int) as tatverdaechtige
+from kriminalstatistik_2022;

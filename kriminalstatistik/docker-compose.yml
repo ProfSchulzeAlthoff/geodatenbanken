@@ -1,0 +1,28 @@
+name: kriminalstatistik
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgres_ws25
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_ws25
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgresql
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
