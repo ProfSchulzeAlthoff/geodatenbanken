@@ -8,8 +8,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro  # init database
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -21,8 +20,5 @@ services:
     depends_on:
       - postgresql
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json  # server configuration
 
-volumes:
-  postgres_data:
-  pgadmin_data:

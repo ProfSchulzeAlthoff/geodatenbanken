@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Group": "Servers",
+            "Name": "kriminalstatistik",
+            "Host": "postgresql",
+            "Port": 5432,
+            "Username": "sherlock",
+            "MaintenanceDB": "postgres",
+            "SSLMode": "prefer",
+            "Favorite": true
+        }
+    }
+}
